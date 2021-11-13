@@ -4,6 +4,13 @@
 # Log file
 *.log
 
+# Class Path
+*.classpath
+
+# Project File
+*.project
+
+
 # BlueJ files
 *.ctxt
 
