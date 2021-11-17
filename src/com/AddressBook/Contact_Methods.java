@@ -6,7 +6,9 @@ import java.util.Scanner;
 public class Contact_Methods {
 
 	static Scanner input = new Scanner(System.in);
+	
 	static ArrayList<Create_Contact> contactBook = new ArrayList<>();
+	static ArrayList<AddressBookList> addresslist = new ArrayList<>();
 	
 	public void AddContact() {
 		System.out.print("Enter First Name:- ");
@@ -147,4 +149,21 @@ public class Contact_Methods {
 			AddContact();
 		}
 	}
+	
+	public void NewAddressBook() {
+		System.out.println("Enter Address Book Name :- ");
+		String addressbook_name = input.next();
+		
+		AddressBookList addressBook= new AddressBookList(addressbook_name);
+		addresslist.add(addressBook);
+		
+		System.out.println("New Address Book Name is added to list.");
+	}
+	
+	public void DisplayAddressBook() {
+		for(AddressBookList name : addresslist) {
+			System.out.println(name.toString());
+		}
+	}
+	
 }
