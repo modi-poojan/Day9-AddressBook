@@ -89,10 +89,9 @@ public class Create_Contact {
 				Email = email;
 			}
 
+			@Override
 			public String toString() {
 				return ("First name : "+First_Name+"\nLast_name : "+Last_Name+"\nAddress : "+Address+"\nCity : "+City+"\nState : "+State+"\nZip_Code : "+Zip_code+"\nPhone_Number : "+Phone_number+"\nEmail :"+Email+"\n\n\n\n\n");
-				
 			}
-			
 			
 		}

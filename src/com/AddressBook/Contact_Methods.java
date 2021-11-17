@@ -53,8 +53,8 @@ public class Contact_Methods {
 		for(Create_Contact person : contactBook) {
 			if(name.equals(person.First_Name)) {
 				System.out.print("\nSelect option to edit----\n1.First_name \n2.Last_name \n3.Address \n4.City \n5.State \n6.Zip_code \n7.Phone_number \n8.Email :- ");
-				int option = input.nextInt();
-				switch(option) {
+				int choice = input.nextInt();
+				switch(choice) {
 				case 1: 
 					System.out.print("Enter new first name :- ");
 					String newFirstName = input.next();
@@ -115,6 +115,24 @@ public class Contact_Methods {
 					System.out.println("Please enter a number between 1 to 8 only...");
 					
 				}
+			}
+			else {
+				continue;
+			}
+		}
+	}
+	
+	public void DeleteContact() {
+		System.out.print("Enter first name to delete contact:- ");
+		String name_to_delete = input.next();
+		
+		for(int i = 0; i < contactBook.size(); i++) {
+			String search_name_in_arrayList = contactBook.get(i).getFirst_Name();
+			
+			if(name_to_delete.equals(search_name_in_arrayList)) {
+				contactBook.remove(i);
+				System.out.println("\nEntered contact deleted successfully.");
+				break;
 			}
 			else {
 				continue;
