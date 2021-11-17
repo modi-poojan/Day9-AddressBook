@@ -139,4 +139,12 @@ public class Contact_Methods {
 			}
 		}
 	}
+	
+	public void AddMultiplePersons() {
+		System.out.println("Enter how many contacts you want to add :- ");
+		int user_input = input.nextInt();
+		for(int i = 1; i <= user_input; i++) {
+			AddContact();
+		}
+	}
 }

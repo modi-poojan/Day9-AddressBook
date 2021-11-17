@@ -13,7 +13,7 @@ public class AddressBookMain {
 		int choice = scan.nextInt();
 		switch (choice) {
 		case 1 : 
-				obj.AddContact();
+				obj.AddMultiplePersons();
 				break;
 		case 2 : 
 				obj.DisplayContacts();
