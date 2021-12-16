@@ -7,28 +7,41 @@ public class AddressBookMain {
 	public static void main(String[] args) {
 		Contact_Methods obj = new Contact_Methods();
 		Scanner scan = new Scanner(System.in);
-		System.out.println("--------------------Welcome To Address Book Program-----------------------");
+		System.out.println("Address Book Program");
 		while(true) {
-		System.out.println("Select an operation to perform\n 1. Add Contact\n 2. Display Object\n 3. Edit Existing Contact\n 4.Delete Existing Contact\n 5.Exit");
+		System.out.println("\nSelect an operation to perform\n 1. Add AddressBook\n 2. Add Contact\n 3. Display Contacts\n 4. Edit Existing Contact\n 5. Delete Existing Contact\n 6. Display All Addressook\n 7. Edit AddressBook\n 8. Exit\n");
 		int choice = scan.nextInt();
 		switch (choice) {
-		case 1 : 
-				obj.AddMultiplePersons();
+		
+		case 1 :
+				obj.newAddressBook();
+				obj.displayAddressBook();
 				break;
 		case 2 : 
-				obj.DisplayContacts();
+				obj.addMultiplePersons();
 				break;
 		case 3 : 
-				obj.EditContact();
+				obj.displayContacts();
 				break;
 		case 4 : 
-				obj.DeleteContact();
+				obj.editContact();
 				break;
-		case 5 :
-				return;
+		case 5 : 
+				obj.deleteContact();
+				break;
+		case 6 :
+				obj.displayAddressBook();
+				break;		
+		case 7 :
+				obj.editAddressBook();
+				break;
+		case 8 :
+			System.out.println("Exited the program");
+			return;
+				
 		default:System.out.println("Enter Valid Choice");
 		}
-		scan.close();
+		
 		}
 	 }
 		
