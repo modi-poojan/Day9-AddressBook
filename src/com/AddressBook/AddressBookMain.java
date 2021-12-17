@@ -9,7 +9,19 @@ public class AddressBookMain {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Address Book Program");
 		while(true) {
-		System.out.println("\nSelect an operation to perform\n 1. Add AddressBook\n 2. Add Contact\n 3. Display Contacts\n 4. Edit Existing Contact\n 5. Delete Existing Contact\n 6. Display All Addressook\n 7. Edit AddressBook\n 8. Exit\n");
+			
+		System.out.println("\nSelect an operation to perform\n "
+				
+				+ "1. Add AddressBook\n "
+				+ "2. Add Contact\n "
+				+ "3. Display Contacts\n "
+				+ "4. Edit Existing Contact\n "
+				+ "5. Search Contacts through City or State \n "
+				+ "6. Delete Existing Contact\n "
+				+ "7. Display All Addressook\n "
+				+ "8. Edit AddressBook\n "
+				+ "9. Exit\n");
+		
 		int choice = scan.nextInt();
 		switch (choice) {
 		
@@ -27,15 +39,19 @@ public class AddressBookMain {
 				obj.editContact();
 				break;
 		case 5 : 
+				obj.searchContact();
+				break;
+		case 6 : 
 				obj.deleteContact();
 				break;
-		case 6 :
+		case 7 :
 				obj.displayAddressBook();
 				break;		
-		case 7 :
+		case 8 :
 				obj.editAddressBook();
 				break;
-		case 8 :
+		case 9
+		:
 			System.out.println("Exited the program");
 			return;
 				

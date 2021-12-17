@@ -211,6 +211,58 @@ public class Contact_Methods {
 		}
 	}
 
+	public void searchContact() {
+		
+		System.out.println("\nFor contact search through 'CITY' press 1\nFor contact search through 'STATE' press 2\n ");
+		int choice = input.nextInt();
+		int flag = -1;
+		switch (choice) {
+		case 1:
+			System.out.println("Enter the city to be searched\n ");
+			String city = input.next();
+			if(addresslist.isEmpty()) {
+				System.out.println("Addressbook is empty\nAdd Addressook\n");
+				return;
+			}
+			for (AddressBookList addressBookList : addresslist) {
+				for (Create_Contact contacts : addressBookList.contactBook) {
+					if (city.equals(contacts.City)) {
+						flag = 0;
+						System.out.println("First name: "+contacts.getFirst_Name()+"Last name: "+contacts.getLast_Name()+"City: "+contacts.getCity()+"\n" );
+					}
+					else {
+						continue;
+					}
+				}
+			}
+			if(flag == -1)
+				System.out.println("No contact with this city present\n");
+			break;
+
+		case 2:
+			if(addresslist.isEmpty()) {
+				System.out.println("Addressbook is empty\nAdd Addressook\n");
+				return;
+			}
+			System.out.println("Enter the state to be searched\n ");
+			String state = input.next();
+			for (AddressBookList list : addresslist) {
+				for (Create_Contact contact : list.contactBook) {
+					if (state.equals(contact.State)) {
+						flag = 0;
+						System.out.println("First name: "+contact.getFirst_Name()+"Last name: "+contact.getLast_Name()+"State: "+contact.getState());
+					}
+					else {
+						continue;
+					}
+				}
+			}
+			if(flag == -1)
+				System.out.println("No contact with this state present\n");
+			break;
+		}
+	}
+
 	
 	public void newAddressBook() {
 		System.out.println("Enter Address Book Name :- ");
@@ -250,7 +302,7 @@ public class Contact_Methods {
 		int flag = -1;
 	
 		if(addresslist.isEmpty()) {
-			System.out.println("Address Book is empty\n Add AddressBook\n");
+			System.out.println("Address Book is empty\nAdd AddressBook\n");
 		}else {
 			System.out.println("\nEnter the AddressBook name you want to edit\n ");
 			String bookname = input.next();
