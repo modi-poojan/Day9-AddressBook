@@ -1,5 +1,8 @@
 package com.AddressBook;
 import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.Enumeration;
+import java.util.Hashtable;
 import java.util.Scanner;
 
 public class Contact_Methods {
@@ -111,16 +114,19 @@ public class Contact_Methods {
 			System.out.println("Addressbook is empty\n 1st create an addressbook ");
 			return;
 		}
+		int flag = -1;
+		System.out.println("\nEnter first name to edit :- ");
+		String name = input.next();
 		for (AddressBookList addressBookList : addresslist) {
 			for (Create_Contact person : addressBookList.contactBook) {
-				System.out.println("\nEnter first name to edit :- ");
-				String name = input.next();
+				
 				if (name.equals(person.First_Name)) {
 					System.out.print(
-							"\nSelect option to edit----\n1.First_name \n2.Last_name \n3.Address \n4.City \n5.State \n6.Zip_code \n7.Phone_number \n8.Email :- ");
+							"\n Option to edit\n1.First_name \n2.Last_name \n3.Address \n4.City \n5.State \n6.Zip_code \n7.Phone_number \n8.Email :- ");
 					int choice = input.nextInt();
 					switch (choice) {
 					case 1:
+						flag = 0;
 						System.out.print("Enter new first name :- ");
 						String newFirstName = input.next();
 						person.setFirst_Name(newFirstName);
@@ -128,6 +134,7 @@ public class Contact_Methods {
 						break;
 
 					case 2:
+						flag = 0;
 						System.out.print("Enter new last name :- ");
 						String newLastName = input.next();
 						person.setLast_Name(newLastName);
@@ -135,6 +142,7 @@ public class Contact_Methods {
 						break;
 
 					case 3:
+						flag = 0;
 						System.out.print("Enter new Address :- ");
 						String newAddress = input.next();
 						person.setAddress(newAddress);
@@ -142,6 +150,7 @@ public class Contact_Methods {
 						break;
 
 					case 4:
+						flag = 0;
 						System.out.print("Enter new city name :- ");
 						String newCity = input.next();
 						person.setCity(newCity);
@@ -149,6 +158,7 @@ public class Contact_Methods {
 						break;
 
 					case 5:
+						flag = 0;
 						System.out.print("Enter new state name :- ");
 						String newState = input.next();
 						person.setState(newState);
@@ -156,6 +166,7 @@ public class Contact_Methods {
 						break;
 
 					case 6:
+						flag = 0;
 						System.out.print("Enter new Zip code :- ");
 						int newZip = input.nextInt();
 						person.setZip_code(newZip);
@@ -163,6 +174,7 @@ public class Contact_Methods {
 						break;
 
 					case 7:
+						flag = 0;
 						System.out.print("Enter new phone number :- ");
 						int newPhone = input.nextInt();
 						person.setPhone_number(newPhone);
@@ -170,6 +182,7 @@ public class Contact_Methods {
 						break;
 
 					case 8:
+						flag = 0;
 						System.out.print("Enter new email :- ");
 						String newEmail = input.next();
 						person.setEmail(newEmail);
@@ -181,12 +194,15 @@ public class Contact_Methods {
 
 					}
 				} else {
-					System.out.println("No contact exist with this first name\nEnter valid First name");
-					return;
+					continue;
+					}
 				}
 			}
+			if(flag == -1) {
+				System.out.println("No contact with first name '"+name+"' exist\n");
+				return;
+			}
 		}
-	}
 
 	public void deleteContact() {
 	
@@ -217,26 +233,36 @@ public class Contact_Methods {
 		int choice = input.nextInt();
 		int flag = -1;
 		switch (choice) {
+		
 		case 1:
-			System.out.println("Enter the city to be searched\n ");
-			String city = input.next();
 			if(addresslist.isEmpty()) {
 				System.out.println("Addressbook is empty\nAdd Addressook\n");
 				return;
 			}
+			System.out.println("Enter the city to be searched\n ");
+			String city = input.next();
+			Dictionary<String, String> cityDict =  new Hashtable<>();
 			for (AddressBookList addressBookList : addresslist) {
 				for (Create_Contact contacts : addressBookList.contactBook) {
 					if (city.equals(contacts.City)) {
 						flag = 0;
-						System.out.println("First name: "+contacts.getFirst_Name()+"Last name: "+contacts.getLast_Name()+"City: "+contacts.getCity()+"\n" );
+						cityDict.put(contacts.getFirst_Name(), contacts.getCity());
+						//System.out.println("First name: "+contacts.getFirst_Name()+"Last name: "+contacts.getLast_Name()+"City: "+contacts.getCity()+"\n" );
 					}
 					else {
 						continue;
 					}
 				}
 			}
-			if(flag == -1)
+			if(flag == -1) {
 				System.out.println("No contact with this city present\n");
+			}else {
+				System.out.println("Contact with city as "+city+" are\n");
+				for(Enumeration<String> i = cityDict.keys();i.hasMoreElements();) {
+					System.out.println(i.nextElement());
+				}
+				
+			}
 			break;
 
 		case 2:
@@ -244,13 +270,15 @@ public class Contact_Methods {
 				System.out.println("Addressbook is empty\nAdd Addressook\n");
 				return;
 			}
+			Dictionary<String, String> stateDict = new Hashtable<>();
 			System.out.println("Enter the state to be searched\n ");
 			String state = input.next();
 			for (AddressBookList list : addresslist) {
 				for (Create_Contact contact : list.contactBook) {
 					if (state.equals(contact.State)) {
 						flag = 0;
-						System.out.println("First name: "+contact.getFirst_Name()+"Last name: "+contact.getLast_Name()+"State: "+contact.getState());
+						stateDict.put(contact.getFirst_Name(), contact. getState());
+						//System.out.println("First name: "+contact.getFirst_Name()+"Last name: "+contact.getLast_Name()+"State: "+contact.getState());
 					}
 					else {
 						continue;
@@ -259,10 +287,49 @@ public class Contact_Methods {
 			}
 			if(flag == -1)
 				System.out.println("No contact with this state present\n");
+			else {
+				System.out.println("Contact with state as "+state+" are\n");
+				for(Enumeration<String> i = stateDict.keys();i.hasMoreElements();) {
+					System.out.println(i.nextElement());
+				}
+			}
 			break;
 		}
 	}
 
+	public void contactCount() {
+		if(addresslist.isEmpty()) {
+			System.out.println("AddressBook is empty \nAdd Book ");
+			return;
+		}
+		System.out.println("To count number of person with same 'CITY' press 1\nTo count number of person with same 'STATE' press 2");
+		int choice = input.nextInt();
+		int count = 0;
+		switch(choice) {
+		case 1:
+			System.out.println("Enter city name\n");
+			String cityName = input.next();
+			for (AddressBookList addressBookList : addresslist) {
+				for (Create_Contact person : addressBookList.contactBook) {
+					if(cityName.equals(person.City)) 
+						count++;	
+				}
+			}
+			System.out.println("The count of contacts with city "+cityName+" is "+count);
+			break;
+			
+		case 2 :
+			System.out.println("Enter state name\n");
+			String stateName = input.next();
+			for (AddressBookList addressBookList : addresslist) {
+				for(Create_Contact person: addressBookList.contactBook) {
+					if(stateName.equals(person.State))
+						count++;
+				}
+			}
+			System.out.println("The count of contacts with state "+stateName+" is "+count);
+		}
+	}
 	
 	public void newAddressBook() {
 		System.out.println("Enter Address Book Name :- ");
