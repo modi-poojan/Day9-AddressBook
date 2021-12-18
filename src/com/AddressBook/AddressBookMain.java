@@ -17,10 +17,11 @@ public class AddressBookMain {
 				+ "3. Display Contacts\n "
 				+ "4. Edit Existing Contact\n "
 				+ "5. Search Contacts through City or State \n "
-				+ "6. Delete Existing Contact\n "
-				+ "7. Display All Addressook\n "
-				+ "8. Edit AddressBook\n "
-				+ "9. Exit\n");
+				+ "6. Find count of contacts through City or State \n "
+				+ "7. Delete Existing Contact\n "
+				+ "8. Display All Addressook\n "
+				+ "9. Edit AddressBook\n "
+				+ "10. Exit\n");
 		
 		int choice = scan.nextInt();
 		switch (choice) {
@@ -42,20 +43,22 @@ public class AddressBookMain {
 				obj.searchContact();
 				break;
 		case 6 : 
+				obj.contactCount();
+				break;
+		case 7 : 
 				obj.deleteContact();
 				break;
-		case 7 :
+		case 8 :
 				obj.displayAddressBook();
 				break;		
-		case 8 :
+		case 9 :
 				obj.editAddressBook();
 				break;
-		case 9
-		:
-			System.out.println("Exited the program");
-			return;
-				
-		default:System.out.println("Enter Valid Choice");
+		case 10:
+				System.out.println("Exited the program");
+				return;
+		default:
+				System.out.println("Enter Valid Choice");
 		}
 		
 		}
