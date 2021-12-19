@@ -391,14 +391,80 @@ public class Contact_Methods {
 		}
 	
 	public void sortContact() {
-		System.out.println("Enter addressook name to display its contact \n");
-		String bookname = input.next();
+
 		int flag = -1;
+		System.out.println("To display contact press accordingly:\n"
+				+"1. By Name\n"
+				+"2. By State\n"
+				+"3. By City\n"
+				+"4. By Zip-Code\n");
+		int choice = input.nextInt();
+		
+		switch(choice) {
+		
+		case 1 :
+			System.out.println("Enter addressook name to display its contact \n");
+			String bookname = input.next();
+			System.out.println("Compared by Names:\n");
+				for (AddressBookList addressBookList : addresslist) {
+					if(bookname.equals(addressBookList.addressbook_name)) {
+						flag = 0;
+						addressBookList.contactBook.stream()
+						.sorted((contact1, contact2) -> contact1.getFirst_Name().compareToIgnoreCase(contact2.getFirst_Name()))
+						.forEach(contact -> System.out.println(contact));
+					}else {
+						continue;
+					}}
+				if(flag == -1) {
+					System.out.println("Enter valid addressbook name\n");
+				}
+				break;
+				
+		case 2 :
+			System.out.println("Enter addressook name to display its contact \n");
+			String bookname1 = input.next();
+			System.out.println("Compared by State: \n");
+				for (AddressBookList addressBookList : addresslist) {
+					if(bookname1.equals(addressBookList.addressbook_name)) {
+						flag = 0;
+						addressBookList.contactBook.stream()
+						.sorted((contact1, contact2) -> contact1.getState().compareToIgnoreCase(contact2.getState()))
+						.forEach(contact -> System.out.println(contact));
+					}else {
+						continue;
+					}}
+				if(flag == -1) {
+					System.out.println("Enter valid addressbook name\n");
+				}
+				break;
+		
+		case 3 :
+			System.out.println("Enter addressook name to display its contact \n");
+			String bookname2 = input.next();
+			System.out.println("Sorted by City: \n");
+				for (AddressBookList addressBookList : addresslist) {
+					if(bookname2.equals(addressBookList.addressbook_name)) {
+						flag = 0;
+						addressBookList.contactBook.stream()
+						.sorted((contact1, contact2) -> contact1.getCity().compareToIgnoreCase(contact2.getCity()))
+						.forEach(contact -> System.out.println(contact));
+					}else {
+						continue;
+					}}
+				if(flag == -1) {
+					System.out.println("Enter valid addressbook name\n");
+				}
+				break;
+			
+		case 4 :
+			System.out.println("Enter addressook name to display its contact \n");
+			String bookname4 = input.next();
+			System.out.println("Sorted by Zip-Code: \n");
 			for (AddressBookList addressBookList : addresslist) {
-				if(bookname.equals(addressBookList.addressbook_name)) {
+				if(bookname4.equals(addressBookList.addressbook_name)) {
 					flag = 0;
 					addressBookList.contactBook.stream()
-					.sorted((contact1, contact2) -> contact1.getFirst_Name().compareToIgnoreCase(contact2.getFirst_Name()))
+					.sorted((contact1, contact2) -> Integer.valueOf(contact1.getZip_code()).compareTo(contact2.getZip_code()))
 					.forEach(contact -> System.out.println(contact));
 				}else {
 					continue;
@@ -406,6 +472,12 @@ public class Contact_Methods {
 			if(flag == -1) {
 				System.out.println("Enter valid addressbook name\n");
 			}
-		 		
+			break;
+			
+		default:
+			System.out.println("Enter valid options\n");
+			break;
+			}
+		}
+	
 	}
-}
