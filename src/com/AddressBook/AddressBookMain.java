@@ -34,7 +34,8 @@ public class AddressBookMain {
 				obj.addMultiplePersons();
 				break;
 		case 3 : 
-				obj.displayContacts();
+				//obj.displayContacts();
+				obj.sortContact();
 				break;
 		case 4 : 
 				obj.editContact();
@@ -55,7 +56,7 @@ public class AddressBookMain {
 				obj.editAddressBook();
 				break;
 		case 10:
-				System.out.println("Exited the program");
+				System.out.println("Terminated sucessfully");
 				return;
 		default:
 				System.out.println("Enter Valid Choice");
