@@ -389,4 +389,23 @@ public class Contact_Methods {
 				}
 			}
 		}
+	
+	public void sortContact() {
+		System.out.println("Enter addressook name to display its contact \n");
+		String bookname = input.next();
+		int flag = -1;
+			for (AddressBookList addressBookList : addresslist) {
+				if(bookname.equals(addressBookList.addressbook_name)) {
+					flag = 0;
+					addressBookList.contactBook.stream()
+					.sorted((contact1, contact2) -> contact1.getFirst_Name().compareToIgnoreCase(contact2.getFirst_Name()))
+					.forEach(contact -> System.out.println(contact));
+				}else {
+					continue;
+				}}
+			if(flag == -1) {
+				System.out.println("Enter valid addressbook name\n");
+			}
+		 		
 	}
+}
