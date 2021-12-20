@@ -30,7 +30,7 @@ public class AddressBookList {
 
 	@Override
 	public String toString() {
-		return "AddressBookList [addressbook_name=" + addressbook_name + "]";
+		return "AddressBookList [addressbook_name=" + addressbook_name + ", contactBook=" + contactBook + "]";
 	}
 	
 	
