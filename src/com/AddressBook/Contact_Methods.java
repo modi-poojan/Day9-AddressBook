@@ -1,4 +1,8 @@
 package com.AddressBook;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Enumeration;
@@ -210,20 +214,23 @@ public class Contact_Methods {
 			System.out.println("\nAddressbook is empty");
 			return;
 		} else {
+			int flag = -1;
 			System.out.print("\nEnter first name to delete contact:- \n");
 			String name_to_delete = input.next();
 			for (AddressBookList addressBookList : addresslist) {
 				for (Create_Contact person : addressBookList.contactBook) {
 					if (name_to_delete.equals(person.First_Name)) {
+						flag = 0;
 						addressBookList.contactBook.remove(person);
 						System.out.println("\nEntered contact deleted successfully.");
 						break;
 					} else {
-						System.out.println("No contact with this name exist in book");
-						return;
+						continue;
 					}
 				}
 			}
+			if(flag == -1)
+				System.out.println("No contact with this name exists\n");
 		}
 	}
 
@@ -359,7 +366,7 @@ public class Contact_Methods {
 			System.out.println("\nAddressBook is empty\nCreate new AddressBook");
 		} else {
 			for (AddressBookList name : addresslist) {
-				System.out.println(name.toString());
+				System.out.println(name.getAddressbook_name());
 			}
 		}
 	}
@@ -479,5 +486,24 @@ public class Contact_Methods {
 			break;
 			}
 		}
+	
+	public void writeContactInFile() throws IOException {
+		File file  = new File("src/ContactInfo.txt");
+		FileWriter writter = new FileWriter(file);
+		String output = addresslist.toString();
+			writter.write(output);
+			writter.close();
+			System.out.println("Data added sucessfully\n");
+			System.out.println("Path = "+ file.getAbsolutePath());
+		}
+	
+	public void readFile() throws FileNotFoundException {
+		
+		Scanner scan = new Scanner(new File("src/ContactInfo.txt"));
+		while(scan.hasNext()) {
+			System.out.println(scan.nextLine());
+		}
+	}
+		
 	
 	}

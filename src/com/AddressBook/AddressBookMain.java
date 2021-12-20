@@ -1,5 +1,7 @@
 package com.AddressBook;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class AddressBookMain {
@@ -21,7 +23,10 @@ public class AddressBookMain {
 				+ "7. Delete Existing Contact\n "
 				+ "8. Display All Addressook\n "
 				+ "9. Edit AddressBook\n "
-				+ "10. Exit\n");
+				+ "10. To print data to file\n "
+				+ "11. To read data of file\n "
+				+ "12. Exit\n");
+				
 		
 		int choice = scan.nextInt();
 		switch (choice) {
@@ -56,6 +61,22 @@ public class AddressBookMain {
 				obj.editAddressBook();
 				break;
 		case 10:
+			try {
+				obj.writeContactInFile();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+				break;
+		case 11:
+			try {
+				obj.readFile();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+				break;
+		case 12:
 				System.out.println("Terminated sucessfully");
 				return;
 		default:
