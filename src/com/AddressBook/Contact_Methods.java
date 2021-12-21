@@ -497,7 +497,7 @@ public class Contact_Methods {
 	}
 
 	
-	  public void writeContactInFile() throws IOException {
+	public void writeContactInFile() throws IOException {
 	  
 		  File file = new File("src/ContactInfo.txt"); 
 		  FileWriter writter = new FileWriter(file); 
@@ -507,7 +507,7 @@ public class Contact_Methods {
 		  System.out.println("Path = "+file.getAbsolutePath()); 
 	  }
 	  
-	  public void readFile() throws FileNotFoundException {
+	public void readFile() throws FileNotFoundException {
 	  
 		  Scanner scan = new Scanner(new File("src/ContactInfo.txt"));
 		  while(scan.hasNext()) { 
@@ -516,33 +516,49 @@ public class Contact_Methods {
 	  
 	  }
 	 
-
-	
-	 public void writeContactInCSVFile() throws IOException {
+	public void writeContactInCSVFile() throws IOException {
 	 
-		 List<String[]> temp = new ArrayList<>(); 
-		 File file = new File("src/ContactInfoCSV.csv"); 
-		 CSVWriter csvwritter = new CSVWriter(new FileWriter(file)); 
-		 temp.add(new String[] { "AddressBook Name", "First_Name","Last_Name" ,"Address","City","State","Zip-Code","PhoneNumber","Email" }); 
-		 for (AddressBookList addressbooklist :addresslist) { 
-			 for (Create_Contact person : addressbooklist.contactBook) {
-				 temp.add(new String[] { addressbooklist.getAddressbook_name(),
-						 person.getFirst_Name(), person.getLast_Name(), person.getAddress(),
-						 person.getCity(), person.getState(), Integer.toString(person.getZip_code()),
-						 Integer.toString(person.getPhone_number()) , person.getEmail() }); 
-				 }
-		  } 
-		 csvwritter.writeAll(temp); csvwritter.close();
-		 System.out.println("Data added sucessfully to CSV file\n"); 
-		 System.out.println("Path = "+ file.getAbsolutePath()); 
+		List<String[]> temp = new ArrayList<>(); 
+		File file = new File("src/ContactInfoCSV.csv"); 
+		CSVWriter csvwritter = new CSVWriter(new FileWriter(file)); 
+		temp.add(new String[] { "AddressBook Name", "First_Name","Last_Name" ,"Address","City","State","Zip-Code","PhoneNumber","Email" }); 
+		for (AddressBookList addressbooklist :addresslist) { 
+		 for (Create_Contact person : addressbooklist.contactBook) {
+			 temp.add(new String[] { addressbooklist.getAddressbook_name(),
+					 person.getFirst_Name(), person.getLast_Name(), person.getAddress(),
+					 person.getCity(), person.getState(), Integer.toString(person.getZip_code()),
+					 Integer.toString(person.getPhone_number()) , person.getEmail() }); 
+			 	}
+		 	} 
+		csvwritter.writeAll(temp); csvwritter.close();
+		System.out.println("Data added sucessfully to CSV file\n"); 
+		System.out.println("Path = "+ file.getAbsolutePath()); 
 		 
 	 }
 		 
-	 public void readCSVFile() throws FileNotFoundException {
+	public void readCSVFile() throws FileNotFoundException {
 	 
-		 Scanner scan = new Scanner(new File("src/ContactInfoCSV.csv"));
-		 while(scan.hasNext()) { 
-			 System.out.println(scan.nextLine()); 
-			 } 
-		 }
+		Scanner scan = new Scanner(new File("src/ContactInfoCSV.csv"));
+		while(scan.hasNext()) { 
+		 System.out.println(scan.nextLine()); 
+		} 
+	}
+	 
+	public void writeInJson() throws IOException {
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		String str = gson.toJson(addresslist);
+		FileWriter file = new FileWriter(new File("src/JsonOutput.json"));
+		file.write(str);
+		file.close();
+		System.out.println("Data added successfully\n");
+	}
+
+	public void readJson() throws FileNotFoundException {
+
+			Scanner Scan = new Scanner(new File("src/JsonOutput.json"));
+			while (Scan.hasNext()) {
+				System.out.println(Scan.nextLine());
+			}
+		}
+
 }

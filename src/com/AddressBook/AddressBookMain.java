@@ -60,7 +60,7 @@ public class AddressBookMain {
 				obj.editAddressBook();
 				break;
 		case 10:
-			System.out.println("Enter in which file you want to add data\n1. TXT File\n2. CSV File\n");
+			System.out.println("Enter in which file you want to add data\n1. TXT File\n2. CSV File\n3. JSON File\n");
 			int writeInput = scan.nextInt();
 			if(writeInput == 1) {
 				try {
@@ -78,11 +78,19 @@ public class AddressBookMain {
 				}
 				break;
 			}
+			else if(writeInput == 3) {
+				try {
+					obj.writeInJson();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				break;
+			}
 			else
 				System.out.println("Enter Valid option\n");
 			break;
 		case 11:
-			System.out.println("Enter from which file you want to read data\n1. TXT File\n2. CSV File\n");
+			System.out.println("Enter from which file you want to read data\n1. TXT File\n2. CSV File\n3. JSON File\n");
 			int readInput = scan.nextInt();
 			if(readInput == 1) {
 				try {
@@ -95,6 +103,14 @@ public class AddressBookMain {
 			else if (readInput == 2) {
 				try {
 					obj.readCSVFile();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				break;
+			}
+			else if(readInput == 3) {
+				try {
+					obj.readJson();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
