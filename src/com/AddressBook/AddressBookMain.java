@@ -1,6 +1,5 @@
 package com.AddressBook;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -9,7 +8,7 @@ public class AddressBookMain {
 	public static void main(String[] args) {
 		Contact_Methods obj = new Contact_Methods();
 		Scanner scan = new Scanner(System.in);
-		System.out.println("Address Book Program");
+		System.out.println("Address Book Program\n");
 		while(true) {
 			
 		System.out.println("\nSelect an operation to perform\n "
@@ -61,21 +60,49 @@ public class AddressBookMain {
 				obj.editAddressBook();
 				break;
 		case 10:
-			try {
-				obj.writeContactInFile();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			System.out.println("Enter in which file you want to add data\n1. TXT File\n2. CSV File\n");
+			int writeInput = scan.nextInt();
+			if(writeInput == 1) {
+				try {
+					obj.writeContactInFile();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 				break;
+			}
+			else if (writeInput == 2) {
+				try {
+					obj.writeContactInCSVFile();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				break;
+			}
+			else
+				System.out.println("Enter Valid option\n");
+			break;
 		case 11:
-			try {
-				obj.readFile();
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			System.out.println("Enter from which file you want to read data\n1. TXT File\n2. CSV File\n");
+			int readInput = scan.nextInt();
+			if(readInput == 1) {
+				try {
+					obj.readFile();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 				break;
+			}
+			else if (readInput == 2) {
+				try {
+					obj.readCSVFile();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				break;
+			}
+			else
+				System.out.println("Enter Valid option\n");
+			break;
 		case 12:
 				System.out.println("Terminated sucessfully");
 				return;
